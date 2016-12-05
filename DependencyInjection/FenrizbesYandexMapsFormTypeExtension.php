@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -53,10 +54,17 @@ class FenrizbesYandexMapsFormTypeExtension extends Extension
         $templatingEngines = $container->getParameter('templating.engines');
 
         if (in_array('twig', $templatingEngines)) {
-            $container->setParameter('twig.form.resources', array_merge(
-                array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
-                $container->getParameter('twig.form.resources')
-            ));
+            if (Kernel::VERSION_ID < 30000) {
+                $container->setParameter('twig.form.resources', array_merge(
+                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
+                    $container->getParameter('twig.form.resources')
+                ));
+            } else {
+                $container->setParameter('twig.form_themes', array_merge(
+                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
+                    $container->getParameter('twig.form_themes')
+                ));
+            }
         }
     }
 }
