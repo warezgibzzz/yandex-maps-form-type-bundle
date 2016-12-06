@@ -23,7 +23,7 @@ class FenrizbesYandexMapsFormTypeExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
         $this->setParameters($container, $config);
@@ -39,8 +39,8 @@ class FenrizbesYandexMapsFormTypeExtension extends Extension
      */
     protected function setParameters(ContainerBuilder $container, array $config)
     {
-        $container->setParameter('fenrizbes_yamap.size',       $config['size']);
-        $container->setParameter('fenrizbes_yamap.default',    $config['default']);
+        $container->setParameter('fenrizbes_yamap.size', $config['size']);
+        $container->setParameter('fenrizbes_yamap.default', $config['default']);
         $container->setParameter('fenrizbes_yamap.parameters', $config['parameters']);
     }
 
@@ -54,17 +54,10 @@ class FenrizbesYandexMapsFormTypeExtension extends Extension
         $templatingEngines = $container->getParameter('templating.engines');
 
         if (in_array('twig', $templatingEngines)) {
-//            if (Kernel::VERSION_ID < 30000) {
-                $container->setParameter('twig.form.resources', array_merge(
-                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
-                    $container->getParameter('twig.form.resources')
-                ));
-//            } else {
-//                $container->setParameter('twig.form_themes', array_merge(
-//                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
-//                    $container->getParameter('twig.form_themes')
-//                ));
-//            }
+            $container->setParameter('twig.form.resources', array_merge(
+                array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
+                $container->getParameter('twig.form.resources')
+            ));
         }
     }
 }
