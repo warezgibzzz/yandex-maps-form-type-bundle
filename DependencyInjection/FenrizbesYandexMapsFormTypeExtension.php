@@ -54,17 +54,17 @@ class FenrizbesYandexMapsFormTypeExtension extends Extension
         $templatingEngines = $container->getParameter('templating.engines');
 
         if (in_array('twig', $templatingEngines)) {
-            if (Kernel::VERSION_ID < 30000) {
+//            if (Kernel::VERSION_ID < 30000) {
                 $container->setParameter('twig.form.resources', array_merge(
                     array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
                     $container->getParameter('twig.form.resources')
                 ));
-            } else {
-                $container->setParameter('twig.form_themes', array_merge(
-                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
-                    $container->getParameter('twig.form_themes')
-                ));
-            }
+//            } else {
+//                $container->setParameter('twig.form_themes', array_merge(
+//                    array('FenrizbesYandexMapsFormTypeBundle:Form:fields.html.twig'),
+//                    $container->getParameter('twig.form_themes')
+//                ));
+//            }
         }
     }
 }
