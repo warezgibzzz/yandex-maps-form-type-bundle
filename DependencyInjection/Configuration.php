@@ -69,7 +69,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
 
                         ->booleanNode('scrollZoom')
-                            ->cannotBeEmpty()
                             ->defaultValue(false)
                         ->end()
 
