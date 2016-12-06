@@ -73,7 +73,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
 
                         ->booleanNode('searchSupport')
-                            ->cannotBeEmpty()
                             ->defaultValue(false)
                         ->end()
 
